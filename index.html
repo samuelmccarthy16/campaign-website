@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Campaign Website</title>
+<!-- Google Fonts for better typography -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+  }
+
+  header {
+    background: linear-gradient(45deg, #ff6f61, #de3163);
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5em;
+    margin-bottom: 10px;
+  }
+
+  /* Added styles for the new heading and buttons container */
+  .header-subtitle {
+    font-size: 2em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    font-weight: normal;
+  }
+
+  .cta-buttons {
+    margin-top: 20px;
+  }
+
+  .cta-buttons a {
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1.2em;
+  }
+  .cta-buttons a.join {
+    background-color: #fff;
+    color: #de3163;
+  }
+  .cta-buttons a.join:hover {
+    background-color: #ffe0e0;
+  }
+  .cta-buttons a.donate {
+    background-color: #de3163;
+    color: #fff;
+  }
+  .cta-buttons a.donate:hover {
+    background-color: #ff6f61;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 25px;
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: all 0.3s;
+  }
+
+  nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+
+  section {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: auto;
+  }
+
+  /* Biographies layout side by side with style and hover effects */
+  .biography {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .bio-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 580px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: all 0.4s ease;
+  }
+  .bio-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    background-color: #ffe0b2;
+  }
+  .bio-card h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  .bio-card p {
+    margin-bottom: 10px;
+  }
+
+  /* Photo circle for biographies with color background and animation */
+  .bio-photo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  .bio-photo img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff6f61;
+    background-color: #ffe0b2;
+    padding: 10px;
+    transition: all 0.4s ease;
+  }
+  .bio-photo img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  /* Gallery styles */
+  #gallery {
+    margin-top: 40px;
+  }
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  .photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  .photo-item img.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .photo-item p {
+    margin-top: 8px;
+    font-size: 0.9em;
+    text-align: center;
+    max-width: 150px;
+    color: #333;
+  }
+
+  /* Videos with style and animation */
+  #videos {
+    margin-top: 50px;
+  }
+  .video-block {
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+  }
+  .video-block:hover {
+    background: linear-gradient(135deg, #ffd54f, #ffb300);
+    transform: translateY(-5px);
+  }
+  .video-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  video {
+    width: 340px;
+    height: 195px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+  video:hover {
+    transform: scale(1.03);
+  }
+  /* Comments under videos - styled like cards with color and animation */
+  .comments {
+    max-width: 380px;
+    margin: 0 auto;
+    background-color: #fff9c4;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeIn 1s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .comment {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-size: 0.95em;
+  }
+
+  /* Contact section styling */
+  #contact {
+    margin-top: 50px;
+  }
+  .contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+  .form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+  }
+  .form-container h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #de3163;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #ff6f61;
+  }
+
+  /* Footer style */
+  footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 768px) {
+    .biography {
+      flex-direction: column;
+      align-items: center;
+    }
+    .contact-section {
+      flex-direction: column;
+    }
+    video {
+      width: 90%;
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Campaign for Liberian Community Leader</h1>
+  <div class="header-subtitle">Together We Can Make a Difference!</div>
+  <!-- Buttons for Join Us and Donate -->
+  <div class="cta-buttons">
+    <a href="#volunteer" class="join">Join Us</a>
+    <a href="#donate" class="donate">Donate</a>
+  </div>
+  <nav>
+    <a href="#biography">Biographies</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Biographies side by side -->
+<section id="biography">
+  <h2 style="text-align:center; margin-bottom:30px;">Biographies</h2>
+  <div class="biography">
+    <!-- President -->
+    <div class="bio-card" id="president">
+      <div class="bio-photo">
+        <img src="assets/photo3.jpg" alt="Madam Annie Jones" />
+      </div>
+      <h2 style="text-align:center; font-family: Arial, sans-serif; font-weight: bold; font-size: 1.5em; color: #2c3e50;">Madam Annie A. Jones</h2>
+      <p>Madam Jones, a native of Weabo District in Maryland County, Liberia, West Africa, embodies resilience and community dedication. Forced to migrate to the U.S. during Liberia's civil war, she transformed her struggles into empowering families and single mothers navigating the complexities of raising children in a society that often prioritizes separating families over supporting them.</p>
+      <p>Settling in Charlotte, NC, she became a pillar in the community, recognized for her efforts to foster positive change. Her initiatives focus on youth empowerment, education, and humanitarian support.</p>
+    </div>
+    <!-- Vice President -->
+    <div class="bio-card" id="vp">
+      <div class="bio-photo">
+        <img src="assets/photo16.jpg" alt="Musu Raynes" />
+      </div>
+      <h2 style="text-align:center; font-family: Arial, sans-serif; font-weight: bold; font-size: 1.5em; color: #2c3e50;">Musu Raynes</h2>
+      <p>Musu Raynes, a dedicated wife, mother, and real estate professional, is passionate about expanding access to affordable housing and empowering communities. She actively participates in various community organizations and lives by the motto: "Walk the walk."</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery with 22 photos -->
+<section id="gallery">
+  <h2 style="text-align:center; margin-bottom:30px;">Gallery</h2>
+  <div class="photos" id="photosContainer"></div>
+</section>
+
+<!-- Videos (4 total) with design + comments -->
+<section id="videos">
+  <h2 style="text-align:center; margin-bottom:30px;">Videos</h2>
+  <!-- Video 1 -->
+  <div class="video-block">
+    <div class="video-wrapper">
+      <video controls>
+        <source src="assets/video1.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+    <div class="comments">
+      <div class="comment"><strong>Comment 1:</strong> Community rally for change.</div>
+      <div class="comment"><strong>Comment 2:</strong> Inspiring speech by Madam Jones.</div>
+    </div>
+  </div>
+  <!-- Video 2 -->
+  <div class="video-block">
+    <div class="video-wrapper">
+      <video controls>
+        <source src="assets/video2.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+    <div class="comments">
+      <div class="comment"><strong>Comment 1:</strong> Community outreach in action.</div>
+      <div class="comment"><strong>Comment 2:</strong> Volunteers making a difference.</div>
+    </div>
+  </div>
+  <!-- Video 3 -->
+  <div class="video-block">
+    <div class="video-wrapper">
+      <video controls>
+        <source src="assets/video3.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+    <div class="comments">
+      <div class="comment"><strong>Comment 1:</strong> Campaign goals and vision.</div>
+      <div class="comment"><strong>Comment 2:</strong> Community success stories.</div>
+    </div>
+  </div>
+  <!-- Video 4 -->
+  <div class="video-block">
+    <div class="video-wrapper">
+      <video controls>
+        <source src="assets/video4.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+    <div class="comments">
+      <div class="comment"><strong>Comment 1:</strong> Join us for a better future.</div>
+      <div class="comment"><strong>Comment 2:</strong> Volunteer and support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact & Support -->
+<section id="contact">
+  <h2 style="text-align:center; margin-bottom:30px;">Contact & Stay Connected</h2>
+  <div class="contact-section">
+    <!-- Contact Form -->
+    <div class="form-container">
+      <h3>Contact Us</h3>
+      <form id="contactForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    <!-- Subscribe Form -->
+    <div class="form-container">
+      <h3>Subscribe to Email</h3>
+      <form id="subscribeForm">
+        <input type="email" placeholder="Your Email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div style="margin-top:40px; text-align:center;">
+    <h3>Our Location</h3>
+    <p>123 Campaign Road, Charlotte, NC 28202</p>
+    <p>Phone: </p>
+    <p>Email: info@liberiancampaign.org</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 Campaign. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript to load 22 photos & handle forms -->
+<script>
+  const photosContainer = document.getElementById('photosContainer');
+  const basePath = "assets/";
+  const descriptions = [
+    "Community outreach event",
+    "Youth empowerment program",
+    "Local festival celebration",
+    "Volunteer work in action",
+    "Fundraising event",
+    "Meeting community leaders",
+    "Campaign rally",
+    "Charity drive",
+    "Educational workshop",
+    "Health awareness campaign",
+    "Cultural festival",
+    "Public speech",
+    "Team building activity",
+    "Community clean-up",
+    "Food drive",
+    "Senior citizens gathering",
+    "Children's event",
+    "Sports event",
+    "Local market",
+    "Tree planting activity",
+    "Art and craft exhibition",
+    "Music concert"
+  ];
+
+  for(let i=1; i<=22; i++) {
+    const photoDiv = document.createElement('div');
+    photoDiv.className='photo-item';
+
+    const img = document.createElement('img');
+    img.src=basePath + 'photo' + i + '.jpg';
+    img.alt='Photo ' + i;
+
+    const caption = document.createElement('p');
+    caption.textContent=descriptions[i-1] || '';
+
+    img.onload= ()=> {
+      setTimeout(()=> { img.classList.add('loaded'); }, i*50);
+    };
+
+    photoDiv.appendChild(img);
+    photoDiv.appendChild(caption);
+    photosContainer.appendChild(photoDiv);
+  }
+
+  // Form handlers
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you for reaching out! We will get back to you soon.');
+    e.target.reset();
+  });
+  document.getElementById('subscribeForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you for subscribing!');
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
