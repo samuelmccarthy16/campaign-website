@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Campaign Website</title>
-<!-- Google Fonts for better typography -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<!-- Google Fonts for a professional look -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
 <style>
   * {
     margin: 0;
@@ -14,14 +14,16 @@
   }
 
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Professional font */
     line-height: 1.6;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    color: #333;
+    /* Deeper reddish background */
+    background-color: #8B0000; /* Darker red (Dark Red) */
+    color: #fff; /* White text for contrast */
   }
 
   header {
-    background: linear-gradient(45deg, #ff6f61, #de3163);
+    /* Changed background to a professional color (navy blue) */
+    background-color: #1e8bf7; /* Professional dark blue */
     color: #fff;
     padding: 40px 20px;
     text-align: center;
@@ -29,24 +31,23 @@
   }
 
   header h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 3.5em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3em;
     margin-bottom: 10px;
   }
 
-  /* Added styles for the new heading and buttons container */
   .header-subtitle {
-    font-size: 2em;
+    font-size: 1.8em;
     margin-top: 10px;
     margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-    font-weight: normal;
   }
 
   .cta-buttons {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
   .cta-buttons a {
     padding: 12px 25px;
     margin: 10px;
@@ -55,61 +56,66 @@
     text-decoration: none;
     transition: all 0.3s;
     font-size: 1.2em;
+    min-width: 120px;
+    text-align: center;
   }
-  .cta-buttons a.join {
+  .join {
     background-color: #fff;
     color: #de3163;
   }
-  .cta-buttons a.join:hover {
-    background-color: #ffe0e0;
+  .join:hover {
+    background-color: #ff6f61;
+    
   }
-  .cta-buttons a.donate {
-    background-color: #de3163;
-    color: #fff;
+  .donate {
+    background-color: #fff;
+    color: #de3163;
   }
-  .cta-buttons a.donate:hover {
+  .donate:hover {
     background-color: #ff6f61;
   }
 
   nav {
     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
   nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 25px;
+    margin: 8px 15px;
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding: 8px 15px;
     border-radius: 25px;
     transition: all 0.3s;
   }
-
   nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
   }
 
   section {
-    padding: 60px 20px;
+    padding: 40px 20px;
     max-width: 1300px;
     margin: auto;
   }
 
-  /* Biographies layout side by side with style and hover effects */
+  /* Biographies */
   .biography {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 30px;
     justify-content: center;
   }
 
   .bio-card {
     background: #fff;
+    color: #333; /* Text color for readability on white card */
     border-radius: 15px;
-    padding: 30px 25px;
-    width: 100%;
+    padding: 20px;
+    flex: 1 1 300px;
     max-width: 580px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     transition: all 0.4s ease;
@@ -119,19 +125,6 @@
     box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     background-color: #ffe0b2;
   }
-  .bio-card h2 {
-    margin-bottom: 15px;
-    color: #2c3e50;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-  .bio-card p {
-    margin-bottom: 10px;
-  }
-
-  /* Photo circle for biographies with color background and animation */
   .bio-photo {
     display: flex;
     justify-content: center;
@@ -151,8 +144,16 @@
     transform: scale(1.1);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
+  .bio-card h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.5em;
+  }
 
-  /* Gallery styles */
+  /* Gallery styles with hover enlarge effect */
   #gallery {
     margin-top: 40px;
   }
@@ -168,32 +169,31 @@
   }
   .photo-item img {
     width: 100%;
+    max-width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
     transition: all 0.5s ease;
   }
-  .photo-item img.loaded {
-    opacity: 1;
-    transform: translateY(0);
+  /* Enlarge photo on hover with smooth scale */
+  .photo-item img:hover {
+    transform: scale(1.2);
   }
   .photo-item p {
     margin-top: 8px;
     font-size: 0.9em;
     text-align: center;
     max-width: 150px;
-    color: #333;
+    color: #fff; /* White text on captions for contrast */
   }
 
-  /* Videos with style and animation */
+  /* Videos styles */
   #videos {
     margin-top: 50px;
   }
   .video-block {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     background: linear-gradient(135deg, #ffe0b2, #ffcc80);
     padding: 20px;
     border-radius: 20px;
@@ -208,10 +208,12 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
   }
   video {
-    width: 340px;
-    height: 195px;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.3s;
@@ -219,9 +221,10 @@
   video:hover {
     transform: scale(1.03);
   }
-  /* Comments under videos - styled like cards with color and animation */
+
+  /* Comments styles - make sure they are visible and styled properly */
   .comments {
-    max-width: 380px;
+    max-width: 100%;
     margin: 0 auto;
     background-color: #fff9c4;
     border-radius: 15px;
@@ -244,14 +247,14 @@
     font-size: 0.95em;
   }
 
-  /* Contact section styling */
+  /* Contact styles */
   #contact {
     margin-top: 50px;
   }
   .contact-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 30px;
     justify-content: center;
   }
   .form-container {
@@ -259,13 +262,12 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    flex: 1;
-    min-width: 250px;
+    flex: 1 1 250px;
     max-width: 350px;
   }
   .form-container h3 {
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: #2c3e50; /* professional color */
   }
   input, textarea {
     width: 100%;
@@ -291,26 +293,53 @@
 
   /* Footer style */
   footer {
-    background: #222;
+    background: #8B0000; /* Dark red for footer */
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     margin-top: 50px;
   }
 
   /* Responsive adjustments */
   @media(max-width: 768px) {
+    header h1 {
+      font-size: 2em;
+    }
+    .header-subtitle {
+      font-size: 1.2em;
+    }
+    nav {
+      flex-direction: column;
+    }
+    nav a {
+      margin: 8px 0;
+      font-size: 1em;
+    }
+    /* Stack biography cards vertically on small screens */
     .biography {
       flex-direction: column;
       align-items: center;
     }
+    /* Make videos full width on small screens */
+    video {
+      max-width: 100%;
+    }
+    /* Stack contact forms vertically */
     .contact-section {
       flex-direction: column;
+      align-items: center;
     }
-    video {
-      width: 90%;
-      height: auto;
-    }
+  }
+</style>
+<style>
+  /* Ensure comments are visible and styled properly */
+  .comments {
+    display: flex !important;
+    background-color: #fff9c4 !important;
+    color: #000 !important;
+  }
+  .comment {
+    color: #000 !important;
   }
 </style>
 </head>
@@ -331,38 +360,118 @@
     <a href="#contact">Contact</a>
   </nav>
 </header>
+<!-- New Section with Two Far Apart Photos -->
+<section id="leadership-section" style="padding: 30px; background-color: #e8e4d9; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;">
+  <!-- Left Photo -->
+  <div style="width: 350px; text-align: center;">
+    <img src="assets/photo23.jpg" alt="Community and Future" style="width: 100%; border-radius: 8px; cursor: pointer;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+    <div style="margin-top: 10px; padding: 10px; background-color: #8B0000; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+      <p style="margin: 0; color: white; font-weight: bold;">ONE COMMUNITY- ONE VOICE- ONE FUTURE</p>
+    </div>
+  </div>
 
-<!-- Biographies side by side -->
+  <!-- Right Photo -->
+  <div style="width: 350px; text-align: center;">
+    <img src="assets/photo19.jpg" alt="Leadership" style="width: 100%; border-radius: 8px; cursor: pointer;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+    <div style="margin-top: 10px; padding: 10px; background-color: #8B0000; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+      <p style="margin: 0; color: white; font-weight: bold;">Leadership that unites, engages, and empowers all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Biographies section -->
 <section id="biography">
   <h2 style="text-align:center; margin-bottom:30px;">Biographies</h2>
   <div class="biography">
     <!-- President -->
     <div class="bio-card" id="president">
       <div class="bio-photo">
-        <img src="assets/photo3.jpg" alt="Madam Annie Jones" />
+        <img src="assets/photo17.jpg" alt="Mother Annie Jones" />
       </div>
-      <h2 style="text-align:center; font-family: Arial, sans-serif; font-weight: bold; font-size: 1.5em; color: #2c3e50;">Madam Annie A. Jones</h2>
-      <p>Madam Jones, a native of Weabo District in Maryland County, Liberia, West Africa, embodies resilience and community dedication. Forced to migrate to the U.S. during Liberia's civil war, she transformed her struggles into empowering families and single mothers navigating the complexities of raising children in a society that often prioritizes separating families over supporting them.</p>
-      <p>Settling in Charlotte, NC, she became a pillar in the community, recognized for her efforts to foster positive change. Her initiatives focus on youth empowerment, education, and humanitarian support.</p>
+      <h2 style="text-align:center;">Mother Annie A. Jones</h2>
+      <p>
+       
+        Annie C. Jones, affectionately known throughout the community as <strong>Mother Jones</strong>,is a servant leader and a proud daughter of Plebo, Maryland County, Liberia, whose life reflects a deep commitment to faith, service, and unity. Her influence extends far beyond titles, she is widely recognized as a nurturer, a connector, and a steady force within the Liberian Community Association of Greater Charlotte (LIBAC).
+Currently serving as a Board Member of LIBAC, Annie has been instrumental in supporting and executing nearly every major initiative within the organization. Her hands-on approach, reliability, and heart for service have made her a key pillar in ensuring the success of community programs and events. She does not simply participate, she shows up, she works, and she delivers.
+Her leadership was especially evident during the COVID-19 pandemic, where Annie demonstrated true servant leadership by putting her own safety aside to support families in need. She helped coordinate and deliver food directly to community members, partnered with local nonprofits to expand outreach, and played a key role in connecting LIBAC to Crisis Ministry and initiatives led by the First Lady providing clothing, baby supplies, and essential items for the elderly. In one of the most challenging times, Annie didn’t step back she stepped up.
+Known as “Mother Jones,” Annie truly embodies that name. While she is a proud mother of two and grandmother to one cherished grandson, she has also opened her home and heart as a foster parent, raising a foster son and extending her love to countless children within the community. She is a godmother and mentor to many, and her ability to nurture, uplift, and bring people together has made her a trusted and beloved figure across generations.
+Annie is deeply passionate about youth development and community collaboration. For the past four years, she has helped connect the community with partner organizations to host the annual F4F Tennis Event, promoting health, mentorship, and active engagement among young people. She believes strongly in the power of partnership and continues to build bridges that create meaningful opportunities for families and youth.
+Her commitment to advocacy is equally impactful. Annie has played a role in connecting the Liberian community with local lawmakers, ensuring that the voices of Liberians in Charlotte are heard and represented at the city level. She understands that a strong community must also have a strong voice.
+Her service has not gone unnoticed. Annie is a 2025 Annie T. Doe Memorial Foundation Community Service Award Honoree and a 2025 Liberian Organization of the Piedmont Humanitarian and Social Services Award Honoree. She was also recognized as Mother of the Year in 2018 at North Davidson United Methodist Church, where she continues to serve faithfully as a Lay Servant.
+Professionally, Annie works as a Rehabilitation Counselor, dedicating her career to helping individuals overcome life’s challenges and achieve independence. She is also a former kindergarten teacher, reflecting her lifelong commitment to nurturing and empowering others.
+ Her passion is to serve and her vision is to lead with humility, by listening first. She believes in bringing everyone to the table, fostering inclusion, and working collectively toward a stronger, more united community.
+As she steps forward as a candidate for President of LIBAC, Annie brings not only experience, but heart, action, and a proven record of service, ready to lead the community toward a future rooted in unity, collaboration, and purpose.
+      </p>
     </div>
     <!-- Vice President -->
     <div class="bio-card" id="vp">
       <div class="bio-photo">
         <img src="assets/photo16.jpg" alt="Musu Raynes" />
       </div>
-      <h2 style="text-align:center; font-family: Arial, sans-serif; font-weight: bold; font-size: 1.5em; color: #2c3e50;">Musu Raynes</h2>
-      <p>Musu Raynes, a dedicated wife, mother, and real estate professional, is passionate about expanding access to affordable housing and empowering communities. She actively participates in various community organizations and lives by the motto: "Walk the walk."</p>
+      <h2 style="text-align:center;">Musu Raynes</h2>
+      <p>
+        Musu Raynes is a devoted wife, mother of four, and a seasoned real estate professional with over 20 years of industry experience. She is the Co-Owner and Founder of MNT Real Estate Inc., a Charlotte, North Carolina–based real estate and property management firm committed to excellence and community impact.
+        Throughout her career, Musu has been dedicated to expanding access to affordable housing and empowering individuals and families—particularly first-time homebuyers—on their journey to homeownership. Her passion for service and advocacy is reflected not only in her professional work but also in her community involvement.
+        Musu is a member of North Davidson United Methodist Church and serves as a manager with Piedmont Airlines. She holds a degree in Mathematics and is a proud and active member of Zeta Phi Beta Sorority, Incorporated, where she continues to exemplify leadership, service, and sisterhood.
+        In addition, she serves as a Board Member of the Annie T. Doe Memorial Foundation and Board Chairlady of the HELP Foundation, where she plays a vital role in advancing initiatives that uplift and support underserved communities.
+        Musu lives by the belief: <strong>“There comes a time when one cannot just talk the talk but also walk the walk.”</strong> Guided by this principle, she remains committed to using her experience and passion to expand access to resources and opportunities for others.
+      </p>
     </div>
   </div>
 </section>
-
-<!-- Gallery with 22 photos -->
+<!-- Message from Mother Jones -->
+<section id="message-from-mother-jones" style="padding: 20px; background-color: #ffffff; margin-bottom: 30px; display: flex; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 1; min-width: 200px; margin-right: 20px;">
+    <img src="assets/photo3.jpg" alt="Mother Annie Jones" style="width: 100%; max-width: 300px; height: auto; border-radius: 8px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <h2 style="text-align: center;">A Message from Mother Jones</h2>
+    <p style="text-align: justify; color: #000000;">
+      I am running for President of the Liberian Community because I believe in the power of unity, service, and representation. Over the years, I have witnessed both the challenges and the remarkable strengths within our community here in Charlotte. We are a people rich in culture, resilience, and potential and to move forward, we must be intentional about coming together, amplifying our voices, and creating opportunities for every generation.
+      <br/><br/>
+      My vision is to build a community where our elders feel respected, our youth feel empowered, and our families feel supported. I plan to promote programs that celebrate our culture, advance education, strengthen Liberian-owned businesses, and foster meaningful connections with other communities in Charlotte so that the Liberian community is seen, heard, and valued for the contributions we bring.
+      <br/><br/>
+      This role is not about position it’s about service. I am committed to listening, being transparent, and leading with integrity. Together, we can build a stronger, more united, and more vibrant Liberian community for the generations to come.
+    </p>
+  </div>
+</section>
+<!-- Photos with Captions -->
+<section id="photos-with-captions" style="padding: 30px; background-color: #e8e4d9; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;">
+  <!-- First Photo -->
+  <div style="width: 350px; text-align: center;">
+    <img src="assets/photo20.jpg" alt="Mother Annie Jones Strategic Roadmap" style="width: 100%; border-radius: 8px; cursor: pointer;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+    <div style="margin-top: 10px; padding: 10px; background-color: #fff; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+      onmouseover="this.style.backgroundColor='#f0f0f0';"
+      onmouseout="this.style.backgroundColor='#fff';">
+      <p style="margin: 0; color: #333333; font-weight: 600;">Mother Annie Jones Strategic Roadmap that she will present to the Board.</p>
+    </div>
+  </div>
+  
+  <!-- Second Photo -->
+  <div style="width: 350px; text-align: center;">
+    <img src="assets/photo12.jpg" alt="Our 1 year Operational Action plan" style="width: 100%; border-radius: 8px; cursor: pointer;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+    <div style="margin-top: 10px; padding: 10px; background-color: #fff; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+      onmouseover="this.style.backgroundColor='#f0f0f0';"
+      onmouseout="this.style.backgroundColor='#fff';">
+      <p style="margin: 0; color: #333333; font-weight: 600;">Our 1 year Operational Action plan....</p>
+    </div>
+  </div>
+</section>
+<!-- Gallery with hover enlarge images -->
 <section id="gallery">
   <h2 style="text-align:center; margin-bottom:30px;">Gallery</h2>
   <div class="photos" id="photosContainer"></div>
 </section>
 
-<!-- Videos (4 total) with design + comments -->
+<!-- Videos section -->
 <section id="videos">
   <h2 style="text-align:center; margin-bottom:30px;">Videos</h2>
   <!-- Video 1 -->
@@ -374,11 +483,11 @@
       </video>
     </div>
     <div class="comments">
-      <div class="comment"><strong>Comment 1:</strong> Community rally for change.</div>
-      <div class="comment"><strong>Comment 2:</strong> Inspiring speech by Madam Jones.</div>
+      <div class="comment"><strong>IN THIS VIDEO:</strong> Mother Jones reaching at the the homeless.</div>
+      <div class="comment"><strong>Comment 1:</strong> Inspiring speech by Madam Jones.</div>
     </div>
   </div>
-  <!-- Video 2 -->
+  <!-- Repeat for other videos... -->
   <div class="video-block">
     <div class="video-wrapper">
       <video controls>
@@ -391,7 +500,6 @@
       <div class="comment"><strong>Comment 2:</strong> Volunteers making a difference.</div>
     </div>
   </div>
-  <!-- Video 3 -->
   <div class="video-block">
     <div class="video-wrapper">
       <video controls>
@@ -404,7 +512,6 @@
       <div class="comment"><strong>Comment 2:</strong> Community success stories.</div>
     </div>
   </div>
-  <!-- Video 4 -->
   <div class="video-block">
     <div class="video-wrapper">
       <video controls>
@@ -419,7 +526,7 @@
   </div>
 </section>
 
-<!-- Contact & Support -->
+<!-- Contact & Stay Connected -->
 <section id="contact">
   <h2 style="text-align:center; margin-bottom:30px;">Contact & Stay Connected</h2>
   <div class="contact-section">
@@ -445,22 +552,22 @@
   <div style="margin-top:40px; text-align:center;">
     <h3>Our Location</h3>
     <p>123 Campaign Road, Charlotte, NC 28202</p>
-    <p>Phone: </p>
+    <p>Phone:+1(347 858 4661) </p>
     <p>Email: info@liberiancampaign.org</p>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>&copy; 2024 Campaign. All rights reserved.</p>
+  <p>&copy; 2026 Campaign. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript to load 22 photos & handle forms -->
+<!-- JavaScript for photo loading and form handling -->
 <script>
   const photosContainer = document.getElementById('photosContainer');
   const basePath = "assets/";
   const descriptions = [
-    "Community outreach event",
+    "Connecting other communities with LIBAC ",
     "Youth empowerment program",
     "Local festival celebration",
     "Volunteer work in action",
@@ -468,12 +575,12 @@
     "Meeting community leaders",
     "Campaign rally",
     "Charity drive",
-    "Educational workshop",
+    "Career Fair at TIAA",
     "Health awareness campaign",
     "Cultural festival",
     "Public speech",
     "Team building activity",
-    "Community clean-up",
+    "Culture",
     "Food drive",
     "Senior citizens gathering",
     "Children's event",
@@ -481,15 +588,21 @@
     "Local market",
     "Tree planting activity",
     "Art and craft exhibition",
-    "Music concert"
+    "Music concert",
+    "Community meeting" // added 23rd photo
   ];
 
-  for(let i=1; i<=22; i++) {
+  for(let i=1; i<=23; i++) {
     const photoDiv = document.createElement('div');
     photoDiv.className='photo-item';
 
     const img = document.createElement('img');
-    img.src=basePath + 'photo' + i + '.jpg';
+    if(i === 12) {
+      // Changed Photo 1 to Photo 12
+      img.src=basePath + 'photo12.jpg';
+    } else {
+      img.src=basePath + 'photo' + i + '.jpg';
+    }
     img.alt='Photo ' + i;
 
     const caption = document.createElement('p');
